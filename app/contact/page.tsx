@@ -4,7 +4,7 @@ import { MapPin, Phone, Clock, Instagram, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactPage() {
-	const whatsappNumber = "584246596009"; // Venezuelan format for WhatsApp
+	const whatsappNumber = WHATSAPP_NUMBER; // Venezuelan format for WhatsApp
 	const whatsappMessage =
 		"¡Hola! Quisiera saber màs sobre el menu de Burger Smoke.";
 

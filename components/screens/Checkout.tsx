@@ -62,6 +62,9 @@ export default function Checkout({ conversionRate }: { conversionRate?: Conversi
 			})
 			.join("\n");
 
+		const bcvRate = conversionRate?.monitors?.bcv?.price;
+		const totalInBs = bcvRate ? total * bcvRate : 0;
+
 		return `*NUEVO PEDIDO*
 
 *Cliente:* ${customerInfo.name}
@@ -72,8 +75,10 @@ export default function Checkout({ conversionRate }: { conversionRate?: Conversi
 ${orderDetails}
 
 *RESUMEN:*
-Subtotal: $${total.toFixed(2)}
-*Total: $${total.toFixed(2)}*
+Subtotal: $${total.toFixed(2)}${bcvRate ? ` / Bs. ${totalInBs.toFixed(2)}` : ""}
+*Total: $${total.toFixed(2)}${bcvRate ? ` / Bs. ${totalInBs.toFixed(2)}` : ""}*
+
+${bcvRate ? `*Tasa BCV:* Bs. ${bcvRate.toFixed(2)} por USD` : ""}
 
 ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 `;
@@ -112,7 +117,7 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 
 Comprobante de pago: ${receiptUrl}`;
 
-			const phoneNumber = "+584146195291"; // Replace with actual restaurant WhatsApp number
+			const phoneNumber = WHATSAPP_NUMBER // Replace with actual restaurant WhatsApp number
 			const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
 				whatsappMessage
 			)}`;
