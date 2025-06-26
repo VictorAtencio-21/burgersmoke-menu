@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { CartProvider } from "@/contexts/cart-context";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
 					<main className="min-h-screen bg-stone-900">{children}</main>
 					<Toaster />
 				</CartProvider>
+				<Analytics />
 			</body>
 		</html>
 	);
