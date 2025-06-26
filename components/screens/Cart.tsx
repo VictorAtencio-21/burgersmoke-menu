@@ -245,7 +245,7 @@ export default function Cart({
 						</p>
 					)}
 
-					<div className="flex gap-4 mt-6">
+                                        <div className="flex flex-col sm:flex-row gap-4 mt-6">
 						<Link href="/menu" className="flex-1">
 							<Button
 								variant="outline"
@@ -254,8 +254,8 @@ export default function Cart({
 								Seguir Comprando
 							</Button>
 						</Link>
-						<Button
-							className="flex-1 bg-green-700 hover:bg-green-900"
+                                                <Button
+                                                        className="flex-1 w-full bg-green-700 hover:bg-green-900"
 							onClick={() => router.push("/checkout")}
 						>
 							Proceder al Pago
