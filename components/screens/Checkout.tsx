@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { uploadToCloudinary } from "@/lib/actions/uploadToCloudinary";
 import { ConversionRate } from "@/lib/types/ConversionRate";
+import { WHATSAPP_NUMBER } from "@/lib/constants";
 
 export default function Checkout({ conversionRate }: { conversionRate?: ConversionRate }) {
 	const { items, total, clearCart } = useCart();
@@ -31,6 +32,8 @@ export default function Checkout({ conversionRate }: { conversionRate?: Conversi
 
 	const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [whatsappUrl, setWhatsappUrl] = useState<string>("");
+	const [showManualLink, setShowManualLink] = useState(false);
 
 	const handleInputChange = (field: string, value: string) => {
 		setCustomerInfo((prev) => ({ ...prev, [field]: value }));
@@ -40,6 +43,22 @@ export default function Checkout({ conversionRate }: { conversionRate?: Conversi
 		const file = event.target.files?.[0];
 		if (file) {
 			setPaymentScreenshot(file);
+		}
+	};
+
+	const copyToClipboard = async (text: string) => {
+		try {
+			await navigator.clipboard.writeText(text);
+			toast({
+				title: "Enlace Copiado",
+				description: "El enlace de WhatsApp ha sido copiado al portapapeles.",
+			});
+		} catch (error) {
+			toast({
+				title: "Error al Copiar",
+				description: "No se pudo copiar el enlace automáticamente.",
+				variant: "destructive",
+			});
 		}
 	};
 
@@ -103,43 +122,95 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 			return;
 		}
 
+		// Check if WhatsApp number is configured
+		if (!WHATSAPP_NUMBER) {
+			toast({
+				title: "Error de Configuración",
+				description: "El número de WhatsApp no está configurado. Contacta al administrador.",
+				variant: "destructive",
+			});
+			return;
+		}
+
 		setIsSubmitting(true);
 
 		try {
-			// In a real application, you would upload the image to your server first
-			// and then send the WhatsApp message with the image URL
-
 			// 1) Upload the image and get back its URL
 			const receiptUrl = await uploadToCloudinary(paymentScreenshot);
+			console.log("Receipt URL:", receiptUrl);
 
-			const whatsappMessage = `
-      ${generateWhatsAppMessage()}
+			// 2) Generate WhatsApp message
+			const whatsappMessage = generateWhatsAppMessage();
+			const fullMessage = `${whatsappMessage}\n\nComprobante de pago: ${receiptUrl}`;
 
-Comprobante de pago: ${receiptUrl}`;
+			// 3) Check message length (WhatsApp has ~2000 character limit for URL)
+			const encodedMessage = encodeURIComponent(fullMessage);
+			if (encodedMessage.length > 1800) { // Leave some buffer
+				toast({
+					title: "Mensaje Demasiado Largo",
+					description: "El pedido es muy extenso. Considera dividirlo en pedidos más pequeños.",
+					variant: "destructive",
+				});
+				return;
+			}
 
-			const phoneNumber = WHATSAPP_NUMBER // Replace with actual restaurant WhatsApp number
-			const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-				whatsappMessage
-			)}`;
+			// 4) Validate phone number format
+			const cleanPhoneNumber = WHATSAPP_NUMBER.replace(/\D/g, ''); // Remove non-digits
+			if (cleanPhoneNumber.length < 10) {
+				toast({
+					title: "Número de WhatsApp Inválido",
+					description: "El número de WhatsApp configurado no es válido.",
+					variant: "destructive",
+				});
+				return;
+			}
 
-			// Open WhatsApp
-			window.open(whatsappUrl, "_blank");
+			// 5) Create WhatsApp URL
+			const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedMessage}`;
+			
+			console.log("WhatsApp URL length:", whatsappUrl.length);
+			console.log("Message length:", fullMessage.length);
+			console.log("Encoded message length:", encodedMessage.length);
 
-			// Clear cart and redirect
+			// 6) Open WhatsApp
+			const newWindow = window.open(whatsappUrl, "_blank");
+			
+			if (!newWindow) {
+				setWhatsappUrl(whatsappUrl);
+				setShowManualLink(true);
+				toast({
+					title: "WhatsApp No Se Abrió Automáticamente",
+					description: "Usa el enlace manual de abajo para enviar tu pedido.",
+					variant: "destructive",
+				});
+				return;
+			}
+
+			// 7) Clear cart and redirect
 			clearCart();
 
 			toast({
 				title: "¡Pedido Enviado!",
-				description:
-					"Tu pedido ha sido enviado por WhatsApp. ¡Te contactaremos pronto!",
+				description: "Tu pedido ha sido enviado por WhatsApp. ¡Te contactaremos pronto!",
 			});
 
 			router.push("/order-success");
 		} catch (error) {
+			console.error("Error sending order:", error);
+			
+			let errorMessage = "Hubo un error al enviar tu pedido. Por favor intenta de nuevo.";
+			
+			if (error instanceof Error) {
+				if (error.message.includes("Upload failed")) {
+					errorMessage = "Error al subir la imagen. Verifica tu conexión a internet.";
+				} else if (error.message.includes("fetch")) {
+					errorMessage = "Error de conexión. Verifica tu internet.";
+				}
+			}
+
 			toast({
 				title: "Error",
-				description:
-					"Hubo un error al enviar tu pedido. Por favor intenta de nuevo.",
+				description: errorMessage,
 				variant: "destructive",
 			});
 		} finally {
@@ -341,6 +412,32 @@ Comprobante de pago: ${receiptUrl}`;
 								<Phone className="h-4 w-4 mr-2" />
 								{isSubmitting ? "Enviando..." : "Enviar Pedido por WhatsApp"}
 							</Button>
+
+							{showManualLink && whatsappUrl && (
+								<div className="mt-4 p-4 bg-stone-800 rounded-lg border border-stone-600">
+									<p className="text-sm text-stone-300 mb-3">
+										WhatsApp no se abrió automáticamente. Copia y pega este enlace:
+									</p>
+									<div className="flex gap-2">
+										<Input
+											value={whatsappUrl}
+											readOnly
+											className="bg-stone-700 border-none text-white text-sm"
+										/>
+										<Button
+											onClick={() => copyToClipboard(whatsappUrl)}
+											variant="outline"
+											size="sm"
+											className="bg-stone-700 border-stone-600 text-white hover:bg-stone-600"
+										>
+											Copiar
+										</Button>
+									</div>
+									<p className="text-xs text-stone-400 mt-2">
+										Pega este enlace en tu navegador para abrir WhatsApp
+									</p>
+								</div>
+							)}
 
 							<p className="text-xs text-stone-400 text-center">
 								Tu pedido será enviado a Burger Smoke por WhatsApp

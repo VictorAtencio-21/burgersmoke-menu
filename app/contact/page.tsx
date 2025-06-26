@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Clock, Instagram, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/constants";
 
 export default function ContactPage() {
 	const whatsappNumber = WHATSAPP_NUMBER; // Venezuelan format for WhatsApp
