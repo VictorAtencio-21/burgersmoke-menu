@@ -1,0 +1,30 @@
+id,name,description,category,price,image,ingredients,ing2,ing3,ing4,ing5,ing6
+cheese-burger,Cheese Burger,"Pan de la casa, carne de res, queso americano, cebolla, pepinillo y salsas",Hamburguesas,4,,pan de la casa,carne de res,queso americano,cebolla,pepinillo
+doble-cheese-burger,Doble Cheese Burger,"Pan de la casa, doble carne, queso americano, cebolla, pepinillo y salsas",Hamburguesas,5,,pan de la casa,doble carne,queso americano,cebolla,pepinillo
+crispy,Crispy,"Pan de la casa, pollo crispy, queso americano, cebolla, lechuga y salsas",Hamburguesas,5,,pan de la casa,pollo crispy,queso americano,cebolla,lechuga
+bacon-champions,Bacon Champions,"Pan de la casa, carne de res, tocineta, queso americano, champiñones, lechuga, cebolla y salsas",Hamburguesas,7,,pan de la casa,carne de res,tocineta,queso americano,champiñones
+tenders-combo,"Tenders de Pollo + Papas Fritas","Combo de 5 tenders de pollo y porción de papas fritas",Tenders,5,,tenders de pollo,papas fritas
+papas-100g,"Papas Fritas (100 gr)","Porción pequeña (100 gr)",Papas Fritas,1,,papas fritas
+papas-300g-cheddar,"Papas Fritas (300 gr c/ cheddar y tocino)","Porción mediana (300 gr) con queso cheddar y tocineta",Papas Fritas,4,,papas fritas,queso cheddar,tocineta
+extra-tocineta,"Extra: Tocineta","Añade tocineta extra",Extras,1,,tocineta
+extra-queso-americano,"Extra: Queso americano","Añade queso americano extra",Extras,1,,queso americano
+extra-champiñones,"Extra: Champiñones","Añade champiñones extra",Extras,1,,champiñones
+extra-salsas,"Extra: Salsas","Añade salsas extra",Extras,1,,salsas
+refresco-1.5l,"Refresco 1.5 L","Botella de refresco 1.5 litros",Bebidas,2.5,,refresco 1.5 L
+te-natural-335ml,"Té natural 335 ml","Té frío/natural en botella de 335 ml",Bebidas,1.5,,té natural 335 ml
+tequenos-10,"Tequeños (10 u) + salsa","10 tequeños acompañados de salsa",Tequeños,7,,tequeños,salsa
+
+meatballs,Meatballs,"Chorizo tipo italiano, tocineta, peperoni, pesto de albahaca, toque de parmesano",Pizzas Especiales,14,,chorizo tipo italiano,tocineta,peperoni,pesto de albahaca,toque de parmesano
+trufa-champinones,"Trufa & Champiñones","Champiñones salteados en mantequilla y ajo, pasta de trufas negras, tomate rostizado, toque de parmesano",Pizzas Especiales,14,,champiñones salteados en mantequilla y ajo,pasta de trufas negras,tomate rostizado,toque de parmesano
+siciliana,Siciliana,"Chorizo tipo italiano, tocineta, parmesano, pasta de trufas negras, pesto de albahaca",Pizzas Especiales,14,,chorizo tipo italiano,tocineta,parmesano,pasta de trufas negras,pesto de albahaca
+mediterranea,Mediterránea,"Aceitunas negras, tomates rostizados, aceite de oliva",Pizzas Especiales,12,,aceitunas negras,tomates rostizados,aceite de oliva
+capresa,Capresa,"Tomates rostizados marinados en aceite de oliva, ajo, sal y pimienta, pesto de albahaca y aceitunas negras",Pizzas Especiales,14,,tomates rostizados marinados en aceite de oliva,ajo,sal y pimienta,pesto de albahaca,aceitunas negras
+te-frutos-rojos-1l,"Té frutos rojos 1 L","Té de frutos rojos en presentación de 1 litro",Bebidas,4,,,,,,,
+
+queso,Queso,"Pizza estilo siciliana, de masa gruesa esponjosa, base de salsa de tomate, queso mozarella",Pizzas,8.5,,masa gruesa esponjosa,salsa de tomate,queso mozarella
+jamon,Jamón,"Pizza estilo siciliana, de masa gruesa esponjosa, base de salsa de tomate, queso mozarella, jamón",Pizzas,10.5,,masa gruesa esponjosa,salsa de tomate,queso mozarella,jamón
+chorizo,Chorizo,"Pizza estilo siciliana, de masa gruesa esponjosa, base de salsa de tomate, queso mozarella, chorizo",Pizzas,10.5,,masa gruesa esponjosa,salsa de tomate,queso mozarella,chorizo
+peperoni,Peperoni,"Pizza estilo siciliana, de masa gruesa esponjosa, base de salsa de tomate, queso mozarella, peperoni",Pizzas,12,,masa gruesa esponjosa,salsa de tomate,queso mozarella,peperoni
+champiñones,Champiñones,"Pizza estilo siciliana, de masa gruesa esponjosa, base de salsa de tomate, queso mozarella, champiñones",Pizzas,12,,masa gruesa esponjosa,salsa de tomate,queso mozarella,champiñones
+tocineta,Tocineta,"Pizza estilo siciliana, de masa gruesa esponjosa, base de salsa de tomate, queso mozarella, tocineta",Pizzas,12,,masa gruesa esponjosa,salsa de tomate,queso mozarella,tocineta
+
