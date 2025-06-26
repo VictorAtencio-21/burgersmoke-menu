@@ -26,13 +26,6 @@ export default async function CheckoutPage() {
 						</p>
 					</div>
 					
-					<button
-						onClick={() => window.location.reload()}
-						className="bg-white text-red-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
-					>
-						🔄 Intentar de nuevo
-					</button>
-					
 					<p className="text-white/60 text-sm mt-4">
 						Si el problema persiste, contacta a nuestro equipo
 					</p>
