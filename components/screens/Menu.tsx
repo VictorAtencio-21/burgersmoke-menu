@@ -53,22 +53,24 @@ export default function Menu({ menu }: { menu: MenuItem[] }) {
 							className="pl-10 bg-stone-950 border-none text-white placeholder-gray-400"
 						/>
 					</div>
-					<div className="flex gap-2 flex-wrap">
-						{categories.map((cat) => (
-							<Button
-								key={cat}
-								variant={selectedCategory === cat ? "default" : "outline"}
-								size="sm"
-								onClick={() => setSelectedCategory(cat)}
-								className={
-									selectedCategory === cat
-										? "bg-red-700 hover:bg-red-600 text-white"
-										: "border-none text-gray-900 hover:bg-red-900/20 hover:text-white"
-								}
-							>
-								{cat}
-							</Button>
-						))}
+					<div className="w-full sm:w-auto overflow-x-auto">
+						<div className="flex gap-2 pb-2 min-w-max">
+							{categories.map((cat) => (
+								<Button
+									key={cat}
+									variant={selectedCategory === cat ? "default" : "outline"}
+									size="sm"
+									onClick={() => setSelectedCategory(cat)}
+									className={
+										selectedCategory === cat
+											? "bg-red-700 hover:bg-red-600 text-white whitespace-nowrap"
+											: "border-none text-gray-900 hover:bg-red-900/20 hover:text-white whitespace-nowrap"
+									}
+								>
+									{cat}
+								</Button>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>

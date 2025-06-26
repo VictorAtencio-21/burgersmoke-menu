@@ -5,8 +5,6 @@ export default async function CheckoutPage() {
 	try {
 		const rate = await getRateByCurrency("dollar");
 
-		console.log("Conversion rate:", rate);
-
 		if (!rate) {
 			throw new Error("Failed to fetch conversion rate");
 		}

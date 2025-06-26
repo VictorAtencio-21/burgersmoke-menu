@@ -12,7 +12,5 @@ import Cart from "@/components/screens/Cart"
 export default async function CartPage() {
   const rate = await getRateByCurrency("dollar")
 
-  console.log("Conversion rate:", rate)
-
   return <Cart conversionRate={rate} />
 }

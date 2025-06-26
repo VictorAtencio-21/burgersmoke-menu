@@ -37,7 +37,11 @@ export default function HomePage() {
 					<div className="grid md:grid-cols-3 gap-8">
 						<Card className="bg-gray-700 border-none ">
 							<CardContent className="p-6 text-center">
-								<ChefHat className="h-12 w-12 text-white mx-auto mb-4" />
+								<div className="text-6xl mb-4">
+									<span role="img" aria-label="Loading">
+										👨🏼‍🍳
+									</span>
+								</div>
 								<h3 className="text-xl font-semibold mb-2 text-white">
 									Ingredientes Premium
 								</h3>
@@ -49,7 +53,11 @@ export default function HomePage() {
 						</Card>
 						<Card className="bg-gray-700 border-none ">
 							<CardContent className="p-6 text-center">
-								<Clock className="h-12 w-12 text-white mx-auto mb-4" />
+								<div className="text-6xl mb-4">
+									<span role="img" aria-label="Loading">
+										🚀
+									</span>
+								</div>
 								<h3 className="text-xl font-semibold mb-2 text-white">
 									Entrega Rápida
 								</h3>
@@ -61,7 +69,11 @@ export default function HomePage() {
 						</Card>
 						<Card className="bg-gray-700 border-none ">
 							<CardContent className="p-6 text-center">
-								<Star className="h-12 w-12 text-white mx-auto mb-4" />
+								<div className="text-6xl mb-4">
+									<span role="img" aria-label="Loading">
+										⭐
+									</span>
+								</div>
 								<h3 className="text-xl font-semibold mb-2 text-white">
 									Perfección Asegurada
 								</h3>
