@@ -568,28 +568,28 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 										confirmación.
 									</p>
 
-									<div className="border-2 border-dashed border-none  rounded-lg p-6 text-center">
-										<Upload className="h-12 w-12 text-stone-400 mx-auto mb-4" />
-										<Label
-											htmlFor="payment-screenshot"
-											className="cursor-pointer"
-										>
-											<span className="text-sm font-medium text-white hover:text-red-300">
-												Subir captura de pantalla del pago
-											</span>
-											<Input
-												id="payment-screenshot"
-												type="file"
-												accept="image/*"
-												onChange={handleFileUpload}
-												className="hidden"
-											/>
-										</Label>
-										{paymentScreenshot && (
-											<p className="text-sm text-green-600 mt-2">
-												✓ {paymentScreenshot.name}
-											</p>
-										)}
+                                                                        <div className="border-2 border-dashed border-none  rounded-lg p-6 text-center">
+                                                                               <Label
+                                                                               htmlFor="payment-screenshot"
+                                                                               className="cursor-pointer flex flex-col items-center"
+                                                                               >
+                                                                               <Upload className="h-12 w-12 text-stone-400 mx-auto mb-4" />
+                                                                               <span className="text-sm font-medium text-white hover:text-red-300">
+                                                                               Subir captura de pantalla del pago
+                                                                               </span>
+                                                                               <Input
+                                                                               id="payment-screenshot"
+                                                                               type="file"
+                                                                               accept="image/*"
+                                                                               onChange={handleFileUpload}
+                                                                               className="hidden"
+                                                                               />
+                                                                               </Label>
+                                                                               {paymentScreenshot && (
+                                                                               <p className="text-sm text-green-600 mt-2">
+                                                                               ✓ {paymentScreenshot.name}
+                                                                               </p>
+                                                                               )}
 									</div>
 								</div>
 							</CardContent>
