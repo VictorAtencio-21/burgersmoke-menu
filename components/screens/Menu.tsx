@@ -141,13 +141,28 @@ export default function Menu({ menu }: { menu: MenuItem[] }) {
 				))}
 			</div>
 
-			{filteredMenu.length === 0 && (
-				<div className="text-center py-12">
-					<p className="text-gray-400 text-lg">
-						No se encontraron platos que coincidan con tus criterios.
-					</p>
-				</div>
-			)}
+                        {filteredMenu.length === 0 && (
+                                <div className="min-h-[40vh] flex items-center justify-center bg-gradient-to-br from-stone-900 to-stone-700 rounded-lg p-6 my-8">
+                                        <div className="text-center max-w-md mx-auto">
+                                                <div className="text-6xl mb-4 animate-bounce">🔍</div>
+                                                <h2 className="text-white text-2xl font-bold mb-3">
+                                                        No encontramos platos
+                                                </h2>
+                                                <p className="text-white/80 text-lg mb-6">
+                                                        Intenta otro término o revisa la categoría seleccionada.
+                                                </p>
+                                                <Button
+                                                        onClick={() => {
+                                                                setSearchTerm("");
+                                                                setSelectedCategory("Todos");
+                                                        }}
+                                                        className="bg-white text-red-700 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-all"
+                                                >
+                                                        Ver todo el menú
+                                                </Button>
+                                        </div>
+                                </div>
+                        )}
 
 			{selectedDish && (
 				<DishModal
