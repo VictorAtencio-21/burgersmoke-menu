@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import { CartProvider } from "@/contexts/cart-context";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next"
@@ -23,11 +24,12 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<CartProvider>
-					<Navbar />
-					<main className="min-h-screen bg-stone-900">{children}</main>
-					<Toaster />
-				</CartProvider>
+                                <CartProvider>
+                                        <Navbar />
+                                        <main className="min-h-screen bg-stone-900">{children}</main>
+                                        <Footer />
+                                        <Toaster />
+                                </CartProvider>
 				<Analytics />
 			</body>
 		</html>
