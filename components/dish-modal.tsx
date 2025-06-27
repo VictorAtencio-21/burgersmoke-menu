@@ -1,13 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogHeader,
-  DialogClose,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
@@ -60,30 +54,22 @@ export function DishModal({ dish, isOpen, onClose }: DishModalProps) {
 	const totalPrice = dish.price * quantity;
 
 	return (
-                <Dialog open={isOpen} onOpenChange={onClose}>
-                        <DialogContent className="w-[95vw] max-w-md mx-auto max-h-[90vh] overflow-y-auto bg-stone-800 border-none  text-white p-0">
-                                {/* Header */}
-                                <DialogHeader className="sticky top-0 bg-stone-800 border-b border-none p-4 flex items-center justify-between">
-                                        <DialogTitle className="text-lg font-bold pr-4">{dish.name}</DialogTitle>
-                                        <DialogClose asChild>
-                                                <Button variant="ghost" size="icon" className="text-stone-400 hover:text-white">
-                                                        <X className="h-5 w-5" />
-                                                        <span className="sr-only">Cerrar</span>
-                                                </Button>
-                                        </DialogClose>
-                                </DialogHeader>
+		<Dialog open={isOpen} onOpenChange={onClose}>
+			<DialogContent className="w-[95vw] max-w-md mx-auto max-h-[90vh] overflow-y-auto bg-stone-800 border-none  text-white p-0">
+				{/* Mobile Header with Close Button */}
+				<div className="sticky top-0 bg-stone-800 border-b border-none  p-4 flex items-center justify-between">
+					<DialogTitle className="text-lg font-bold pr-4">
+						{dish.name}
+					</DialogTitle>
+				</div>
 
-                                <div className="p-4 space-y-6">
-                                        {/* Dish Image and Info */}
-                                        <div className="space-y-3">
-                                                <div className="aspect-video bg-stone-200 rounded-lg overflow-hidden">
-                                                        <img
-                                                                src={dish.image || "/placeholder.svg"}
-                                                                alt={dish.name}
-                                                                className="w-full h-full object-cover"
-                                                        />
-                                                </div>
-                                                <div>
+				<div className="p-4 space-y-6">
+					{/* Dish Image and Info */}
+					<div className="space-y-3">
+						{/* <div className="aspect-video bg-stone-200 rounded-lg overflow-hidden">
+              <img src={dish.image || "/placeholder.svg"} alt={dish.name} className="w-full h-full object-cover" />
+            </div> */}
+						<div>
 							<p className="text-stone-400 text-sm mb-3">{dish.description}</p>
 							<div className="flex items-center justify-between">
 								<Badge className="bg-red-700 text-white text-xs">
@@ -183,31 +169,22 @@ export function DishModal({ dish, isOpen, onClose }: DishModalProps) {
 					</div>
 				</div>
 
-                                {/* Sticky Footer with Add to Cart */}
-                                <div className="sticky bottom-0 bg-stone-800 border-t border-none p-4">
-                                        <div className="flex items-center justify-between mb-3">
-                                                <span className="text-sm text-stone-400">Total:</span>
-                                                <span className="text-xl font-bold text-white">
-                                                        ${totalPrice.toFixed(2)}
-                                                </span>
-                                        </div>
-                                        <div className="flex gap-2">
-                                                <Button
-                                                        variant="outline"
-                                                        onClick={onClose}
-                                                        className="flex-1"
-                                                >
-                                                        Cancelar
-                                                </Button>
-                                                <Button
-                                                        onClick={handleAddToCart}
-                                                        className="flex-1 bg-red-700 hover:bg-red-600 h-12 text-base font-semibold"
-                                                        size="lg"
-                                                >
-                                                        Agregar al Carrito
-                                                </Button>
-                                        </div>
-                                </div>
+				{/* Sticky Footer with Add to Cart */}
+				<div className="sticky bottom-0 bg-stone-800 border-t border-none  p-4">
+					<div className="flex items-center justify-between mb-3">
+						<span className="text-sm text-stone-400">Total:</span>
+						<span className="text-xl font-bold text-white">
+							${totalPrice.toFixed(2)}
+						</span>
+					</div>
+					<Button
+						onClick={handleAddToCart}
+						className="w-full bg-red-700 hover:bg-red-600 h-12 text-base font-semibold"
+						size="lg"
+					>
+						Agregar al Carrito
+					</Button>
+				</div>
 			</DialogContent>
 		</Dialog>
 	);
