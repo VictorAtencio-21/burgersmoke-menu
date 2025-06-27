@@ -35,7 +35,7 @@ export default function HomePage() {
 						¿Por qué elegir Burger Smoke?
 					</h2>
 					<div className="grid md:grid-cols-3 gap-8">
-						<Card className="bg-gray-700 border-none ">
+                                                <Card className="bg-stone-800 border-none ">
 							<CardContent className="p-6 text-center">
 								<div className="text-6xl mb-4">
 									<span role="img" aria-label="Loading">
@@ -51,7 +51,7 @@ export default function HomePage() {
 								</p>
 							</CardContent>
 						</Card>
-						<Card className="bg-gray-700 border-none ">
+                                                <Card className="bg-stone-800 border-none ">
 							<CardContent className="p-6 text-center">
 								<div className="text-6xl mb-4">
 									<span role="img" aria-label="Loading">
@@ -67,7 +67,7 @@ export default function HomePage() {
 								</p>
 							</CardContent>
 						</Card>
-						<Card className="bg-gray-700 border-none ">
+                                                <Card className="bg-stone-800 border-none ">
 							<CardContent className="p-6 text-center">
 								<div className="text-6xl mb-4">
 									<span role="img" aria-label="Loading">
