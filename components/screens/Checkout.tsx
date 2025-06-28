@@ -392,7 +392,9 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 									<div className="border border-stone-700 rounded-lg p-4">
 										<div className="flex items-center gap-3 mb-3">
 											<Banknote className="h-5 w-5 text-blue-500" />
-											<h4 className="font-semibold text-white">Transferencia</h4>
+											<h4 className="font-semibold text-white">
+												Transferencia
+											</h4>
 										</div>
 										<div className="space-y-2 text-sm">
 											<div className="flex justify-between">
@@ -411,7 +413,9 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 											</div>
 											<div className="flex justify-between">
 												<span className="text-stone-400">Tipo de cuenta:</span>
-												<span className="text-white">Cuenta Corriente Amiga</span>
+												<span className="text-white">
+													Cuenta Corriente Amiga
+												</span>
 											</div>
 											<div className="flex justify-between items-center">
 												<span className="text-stone-400">Número:</span>
@@ -481,9 +485,10 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 
 									<div className="bg-stone-800 rounded-lg p-3 mt-4">
 										<p className="text-xs text-stone-300 text-center">
-											💡 <strong>Consejo:</strong> Después de realizar el pago, toma
-											una captura de pantalla del comprobante y súbela donde se le
-											solicita. Esto ayudará a confirmar tu pedido más rápido.
+											💡 <strong>Consejo:</strong> Después de realizar el pago,
+											toma una captura de pantalla del comprobante y súbela
+											donde se le solicita. Esto ayudará a confirmar tu pedido
+											más rápido.
 										</p>
 									</div>
 								</div>
@@ -527,15 +532,15 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 									/>
 								</div>
 
-                                                                <div>
-                                                                        <Label htmlFor="address" className="text-stone-300">
-                                                                                Dirección de Entrega *
-                                                                        </Label>
-                                                                        <AddressSearchMap
-                                                                                initialAddress={customerInfo.address}
-                                                                                onSelect={(addr) => handleInputChange("address", addr)}
-                                                                        />
-                                                                </div>
+								<div>
+									<Label htmlFor="address" className="text-stone-300">
+										Dirección de Entrega *
+									</Label>
+									<AddressSearchMap
+										initialAddress={customerInfo.address}
+										onSelect={(addr) => handleInputChange("address", addr)}
+									/>
+								</div>
 
 								<div>
 									<Label htmlFor="notes" className="text-stone-300">
@@ -556,37 +561,39 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 						{/* Payment Upload */}
 						<Card className="bg-stone-950 border-none">
 							<CardHeader>
-								<CardTitle className="text-white">Confirmación de Pago</CardTitle>
+								<CardTitle className="text-white">
+									Confirmación de Pago
+								</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<div className="space-y-4">
 									<p className="text-sm text-stone-300">
-										Por favor realiza tu pago y sube una captura de pantalla como
-										confirmación.
+										Por favor realiza tu pago y sube una captura de pantalla
+										como confirmación.
 									</p>
 
-                                                                        <div className="border-2 border-dashed border-none  rounded-lg p-6 text-center">
-                                                                               <Label
-                                                                               htmlFor="payment-screenshot"
-                                                                               className="cursor-pointer flex flex-col items-center"
-                                                                               >
-                                                                               <Upload className="h-12 w-12 text-stone-400 mx-auto mb-4" />
-                                                                               <span className="text-sm font-medium text-white hover:text-red-300">
-                                                                               Subir captura de pantalla del pago
-                                                                               </span>
-                                                                               <Input
-                                                                               id="payment-screenshot"
-                                                                               type="file"
-                                                                               accept="image/*"
-                                                                               onChange={handleFileUpload}
-                                                                               className="hidden"
-                                                                               />
-                                                                               </Label>
-                                                                               {paymentScreenshot && (
-                                                                               <p className="text-sm text-green-600 mt-2">
-                                                                               ✓ {paymentScreenshot.name}
-                                                                               </p>
-                                                                               )}
+									<div className="border-2 border-dashed border-none  rounded-lg p-6 text-center">
+										<Label
+											htmlFor="payment-screenshot"
+											className="cursor-pointer flex flex-col items-center"
+										>
+											<Upload className="h-12 w-12 text-stone-400 mx-auto mb-4" />
+											<span className="text-sm font-medium text-white hover:text-red-300">
+												Subir captura de pantalla del pago
+											</span>
+											<Input
+												id="payment-screenshot"
+												type="file"
+												accept="image/*"
+												onChange={handleFileUpload}
+												className="hidden"
+											/>
+										</Label>
+										{paymentScreenshot && (
+											<p className="text-sm text-green-600 mt-2">
+												✓ {paymentScreenshot.name}
+											</p>
+										)}
 									</div>
 								</div>
 							</CardContent>
