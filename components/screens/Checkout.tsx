@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import { uploadToCloudinary } from "@/lib/actions/uploadToCloudinary";
 import { ConversionRate } from "@/lib/types/ConversionRate";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
+import AddressSearchMap from "@/components/AddressSearchMap";
 
 export default function Checkout({
 	conversionRate,
@@ -526,19 +527,15 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 									/>
 								</div>
 
-								<div>
-									<Label htmlFor="address" className="text-stone-300">
-										Dirección de Entrega *
-									</Label>
-									<Textarea
-										id="address"
-										value={customerInfo.address}
-										onChange={(e) => handleInputChange("address", e.target.value)}
-										placeholder="Ingresa tu dirección completa de entrega"
-										rows={3}
-										className="bg-stone-700 border-none  text-white placeholder-stone-400"
-									/>
-								</div>
+                                                                <div>
+                                                                        <Label htmlFor="address" className="text-stone-300">
+                                                                                Dirección de Entrega *
+                                                                        </Label>
+                                                                        <AddressSearchMap
+                                                                                initialAddress={customerInfo.address}
+                                                                                onSelect={(addr) => handleInputChange("address", addr)}
+                                                                        />
+                                                                </div>
 
 								<div>
 									<Label htmlFor="notes" className="text-stone-300">
