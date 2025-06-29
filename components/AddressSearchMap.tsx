@@ -174,7 +174,13 @@ export default function AddressSearchMap({ onSelect, initialAddress }: AddressSe
       }
       setSuggestions([]);
     };
-  }, [initialAddress, onSelect]);
+  }, []);
+
+  useEffect(() => {
+    if (!initialAddress) return;
+    if (inputRef.current) inputRef.current.value = initialAddress;
+    searchAddress(initialAddress);
+  }, [initialAddress]);
 
   return (
     <div className="space-y-2">
