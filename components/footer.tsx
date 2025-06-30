@@ -11,6 +11,10 @@ export function Footer() {
       <a href="mailto:atenciomvictor@gmail.com" className="underline hover:text-white">
         atenciomvictor@gmail.com
       </a>
+      <span className="mx-1">|</span>
+      <Link href="https://victoratencio.vercel.app" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
+        victoratencio.vercel.app
+      </Link>
     </footer>
   );
 }
