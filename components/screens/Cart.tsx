@@ -15,20 +15,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ConversionRate } from "@/lib/types/ConversionRate";
-
-export default function Cart({
-	conversionRate,
-}: {
-	conversionRate?: ConversionRate;
-}) {
-	const { items, updateQuantity, removeItem, total } = useCart();
-	const router = useRouter();
-
-	// Calculate total in Bolívares
-	const totalInBs = conversionRate?.monitors?.bcv?.price
-		? total * conversionRate.monitors.bcv.price
-		: 0;
+export default function Cart() {
+        const { items, updateQuantity, removeItem, total } = useCart();
+        const router = useRouter();
 
 	if (items.length === 0) {
 		return (
@@ -187,16 +176,6 @@ export default function Cart({
 											<p className="text-lg font-bold text-white">
 												${(item.price * item.quantity).toFixed(2)}
 											</p>
-											{conversionRate?.monitors?.bcv?.price && (
-												<p className="text-sm text-gray-400">
-													Bs.{" "}
-													{(
-														item.price *
-														item.quantity *
-														conversionRate.monitors.bcv.price
-													).toFixed(2)}
-												</p>
-											)}
 										</div>
 									</div>
 								</div>
@@ -217,11 +196,6 @@ export default function Cart({
 							<span>Subtotal</span>
 							<div className="text-right">
 								<span>${total.toFixed(2)}</span>
-								{conversionRate?.monitors?.bcv?.price && (
-									<p className="text-sm text-gray-400">
-										Bs. {totalInBs.toFixed(2)}
-									</p>
-								)}
 							</div>
 						</div>
 						<Separator className="border-none " />
@@ -229,21 +203,10 @@ export default function Cart({
 							<span>Total</span>
 							<div className="text-right">
 								<span className="text-white">${total.toFixed(2)}</span>
-								{conversionRate?.monitors?.bcv?.price && (
-									<p className="text-sm text-gray-400 font-normal">
-										Bs. {totalInBs.toFixed(2)}
-									</p>
-								)}
 							</div>
 						</div>
 					</div>
 
-					{conversionRate?.monitors?.bcv?.price && (
-						<p className="text-xs text-gray-500 mt-2 text-center">
-							Precios calculados al BCV del día: Bs.{" "}
-							{conversionRate.monitors.bcv.price.toFixed(2)} por USD
-						</p>
-					)}
 
                                         <div className="flex flex-col sm:flex-row gap-4 mt-6">
 						<Link href="/menu" className="flex-1">

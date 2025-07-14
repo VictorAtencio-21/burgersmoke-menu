@@ -21,22 +21,12 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { uploadToCloudinary } from "@/lib/actions/uploadToCloudinary";
-import { ConversionRate } from "@/lib/types/ConversionRate";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 
-export default function Checkout({
-	conversionRate,
-}: {
-	conversionRate?: ConversionRate;
-}) {
-	const { items, total, clearCart } = useCart();
-	const { toast } = useToast();
-	const router = useRouter();
-
-	// Calculate total in Bolívares
-	const totalInBs = conversionRate?.monitors?.bcv?.price
-		? total * conversionRate.monitors.bcv.price
-		: 0;
+export default function Checkout() {
+        const { items, total, clearCart } = useCart();
+        const { toast } = useToast();
+        const router = useRouter();
 
 	const [customerInfo, setCustomerInfo] = useState({
 		name: "",
@@ -112,10 +102,7 @@ export default function Checkout({
 			})
 			.join("\n");
 
-		const bcvRate = conversionRate?.monitors?.bcv?.price;
-		const totalInBs = bcvRate ? total * bcvRate : 0;
-
-		return `*NUEVO PEDIDO*
+                return `*NUEVO PEDIDO*
 
 *Cliente:* ${customerInfo.name}
 *Teléfono:* ${customerInfo.phone}
@@ -125,10 +112,8 @@ export default function Checkout({
 ${orderDetails}
 
 *RESUMEN:*
-Subtotal: $${total.toFixed(2)}${bcvRate ? ` / Bs. ${totalInBs.toFixed(2)}` : ""}
-*Total: $${total.toFixed(2)}${bcvRate ? ` / Bs. ${totalInBs.toFixed(2)}` : ""}*
-
-${bcvRate ? `*Tasa BCV:* Bs. ${bcvRate.toFixed(2)} por USD` : ""}
+Subtotal: $${total.toFixed(2)}
+*Total: $${total.toFixed(2)}*
 
 ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 `;
@@ -287,19 +272,9 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 										<span className="font-medium text-white">
 											${(item.price * item.quantity).toFixed(2)}
 										</span>
-										{conversionRate?.monitors?.bcv?.price && (
-											<p className="text-sm text-stone-400">
-												Bs.{" "}
-												{(
-													item.price *
-													item.quantity *
-													conversionRate.monitors.bcv.price
-												).toFixed(2)}
-											</p>
-										)}
-									</div>
-								</div>
-							))}
+                                                                       </div>
+                                                                </div>
+                                                        ))}
 
 							<Separator className="border-none " />
 
@@ -308,33 +283,17 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 									<span>Subtotal</span>
 									<div className="text-right">
 										<span>${total.toFixed(2)}</span>
-										{conversionRate?.monitors?.bcv?.price && (
-											<p className="text-sm text-stone-400">
-												Bs. {totalInBs.toFixed(2)}
-											</p>
-										)}
-									</div>
-								</div>
+                                                                        </div>
+                                                                </div>
 								<Separator className="border-none " />
 								<div className="flex justify-between text-lg font-bold">
 									<span>Total</span>
 									<div className="text-right">
 										<span className="text-white">${total.toFixed(2)}</span>
-										{conversionRate?.monitors?.bcv?.price && (
-											<p className="text-sm text-stone-400 font-normal">
-												Bs. {totalInBs.toFixed(2)}
-											</p>
-										)}
-									</div>
-								</div>
-							</div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
 
-							{conversionRate?.monitors?.bcv?.price && (
-								<p className="text-xs text-stone-400 mt-2 text-center">
-									Precios calculados al BCV del día: Bs.{" "}
-									{conversionRate.monitors.bcv.price.toFixed(2)} por USD
-								</p>
-							)}
 						</div>
 					</CardContent>
 				</Card>
