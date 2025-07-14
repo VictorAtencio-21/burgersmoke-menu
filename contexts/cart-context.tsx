@@ -1,6 +1,12 @@
 "use client"
 
-import { createContext, useContext, useReducer, type ReactNode } from "react"
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  type ReactNode,
+} from "react"
 
 export interface MenuItem {
   id: string
@@ -77,7 +83,23 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(cartReducer, { items: [] })
+  const [state, dispatch] = useReducer(
+    cartReducer,
+    { items: [] },
+    () => {
+      if (typeof window !== "undefined") {
+        const stored = localStorage.getItem("cart")
+        if (stored) {
+          try {
+            return { items: JSON.parse(stored) as CartItem[] }
+          } catch {
+            // ignore JSON parse errors
+          }
+        }
+      }
+      return { items: [] }
+    },
+  )
 
   const addItem = (item: CartItem) => {
     dispatch({ type: "ADD_ITEM", payload: item })
@@ -94,6 +116,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const clearCart = () => {
     dispatch({ type: "CLEAR_CART" })
   }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(state.items))
+    }
+  }, [state.items])
 
   const total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
