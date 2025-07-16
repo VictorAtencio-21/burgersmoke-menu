@@ -55,9 +55,9 @@ export function DishModal({ dish, isOpen, onClose }: DishModalProps) {
 
 	return (
 		<Dialog open={isOpen} onOpenChange={onClose}>
-			<DialogContent className="w-[95vw] max-w-md mx-auto max-h-[90vh] overflow-y-auto bg-stone-800 border-none  text-white p-0">
+			<DialogContent className="w-[95vw] max-w-md mx-auto max-h-[90vh] overflow-y-auto bg-stone-800 border-none text-white p-0 custom-scrollbar">
 				{/* Mobile Header with Close Button */}
-				<div className="sticky top-0 bg-stone-800 border-b border-none  p-4 flex items-center justify-between">
+				<div className="sticky top-0 bg-stone-800 border-b border-none  p-4 flex items-center justify-between z-[100]">
 					<DialogTitle className="text-lg font-bold pr-4">
 						{dish.name}
 					</DialogTitle>
