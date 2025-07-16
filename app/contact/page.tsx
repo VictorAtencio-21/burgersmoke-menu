@@ -32,10 +32,15 @@ export default function ContactPage() {
 							</CardTitle>
 						</CardHeader>
 						<CardContent>
-							<p className="text-stone-300 text-lg">Maracaibo, Venezuela</p>
-							<p className="text-stone-400 text-sm mt-2">
-								Servicio de delivery disponible en toda la ciudad
-							</p>
+							<iframe
+								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d304.14812751061334!2d-71.61309633999593!3d10.680753238250476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8999f64652e995%3A0x51e57ea5f97d3196!2sBurgersmokemcbo!5e0!3m2!1ses-419!2snl!4v1751208723721!5m2!1ses-419!2snl"
+								width="100%"
+								height="350"
+								style={{ border: 0, borderRadius: "0.5rem" }}
+								allowFullScreen={true}
+								loading="lazy"
+								referrerPolicy="no-referrer-when-downgrade"
+							></iframe>
 						</CardContent>
 					</Card>
 
@@ -153,7 +158,7 @@ export default function ContactPage() {
 							>
 								<Button
 									variant="outline"
-									className="w-full border-none  text-stone-300 hover:bg-red-900/20 hover:text-white text-gray-900"
+									className="w-full border-none hover:bg-red-900/20 hover:text-white text-gray-900"
 								>
 									Hacer Pedido por WhatsApp
 								</Button>
@@ -173,14 +178,14 @@ export default function ContactPage() {
 					</CardHeader>
 					<CardContent className="text-center space-y-4">
 						<p className="text-stone-300 text-lg">
-							En Burger Smoke nos especializamos en hamburguesas
-							con los mejores ingredientes. Cada hamburger es preparada al
-							momento con carne premium y nuestro toque especial.
+							En Burger Smoke nos especializamos en hamburguesas con los mejores
+							ingredientes. Cada hamburger es preparada al momento con carne
+							premium y nuestro toque especial.
 						</p>
 						<p className="text-stone-400">
 							Ubicados en Maracaibo, Venezuela, ofrecemos servicio de delivery
-							para que puedas disfrutar de nuestras deliciosas hamburguesas en la
-							comodidad de tu hogar.
+							para que puedas disfrutar de nuestras deliciosas hamburguesas en
+							la comodidad de tu hogar.
 						</p>
 						<div className="flex justify-center gap-4 mt-6">
 							<Link href="/menu">
@@ -197,7 +202,7 @@ export default function ContactPage() {
 							>
 								<Button
 									variant="outline"
-									className="border-none  text-stone-300 hover:bg-red-900/20 hover:text-white text-gray-900"
+									className="border-none hover:bg-red-900/20 hover:text-white text-gray-900"
 								>
 									Contactar Ahora
 								</Button>

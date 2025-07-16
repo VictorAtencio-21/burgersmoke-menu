@@ -53,7 +53,7 @@ export default function Menu({ menu }: { menu: MenuItem[] }) {
 							className="pl-10 bg-stone-950 border-none text-white placeholder-gray-400"
 						/>
 					</div>
-					<div className="w-full sm:w-auto overflow-x-auto">
+					<div className="w-full sm:w-auto overflow-x-auto custom-scrollbar">
 						<div className="flex gap-2 pb-2 min-w-max">
 							{categories.map((cat) => (
 								<Button

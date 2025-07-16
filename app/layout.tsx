@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body className={`${inter.className} custom-scrollbar`}>
                                 <CartProvider>
                                         <Navbar />
                                         <main className="min-h-screen bg-stone-900">{children}</main>
