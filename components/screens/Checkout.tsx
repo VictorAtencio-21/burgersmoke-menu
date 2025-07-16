@@ -44,6 +44,9 @@ export default function Checkout({
 		phone: "",
 		address: "",
 		notes: "",
+		latitude: null as number | null,
+		longitude: null as number | null,
+		googleMapsLink: "",
 	});
 
 	const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
@@ -53,6 +56,16 @@ export default function Checkout({
 
 	const handleInputChange = (field: string, value: string) => {
 		setCustomerInfo((prev) => ({ ...prev, [field]: value }));
+	};
+
+	const handleAddressSelect = (address: string, lat: number, lon: number, googleMapsLink: string) => {
+		setCustomerInfo((prev) => ({ 
+			...prev, 
+			address, 
+			latitude: lat, 
+			longitude: lon, 
+			googleMapsLink 
+		}));
 	};
 
 	const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +133,7 @@ export default function Checkout({
 
 *Cliente:* ${customerInfo.name}
 *Teléfono:* ${customerInfo.phone}
-*Dirección:* ${customerInfo.address}
+*Dirección:* ${customerInfo.address}${customerInfo.googleMapsLink ? `\n*Ubicación:* ${customerInfo.googleMapsLink}` : ""}
 
 *PEDIDO:*
 ${orderDetails}
@@ -556,8 +569,7 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 										Dirección de Entrega *
 									</Label>
 									<AddressSearchMap
-										initialAddress={customerInfo.address}
-										onSelect={(addr) => handleInputChange("address", addr)}
+										onSelect={handleAddressSelect}
 									/>
 								</div>
 
@@ -591,7 +603,7 @@ ${customerInfo.notes ? `*Notas adicionales:* ${customerInfo.notes}` : ""}
 										como confirmación.
 									</p>
 
-									<div className="border-2 border-dashed border-none  rounded-lg p-6 text-center">
+									<div className="border-2 border-dashed border-stone-600 rounded-lg p-6 text-center">
 										<Label
 											htmlFor="payment-screenshot"
 											className="cursor-pointer flex flex-col items-center"
