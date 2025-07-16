@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { LEAFLET_TILE_URL } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
-import { LocateFixed, Loader2, ExternalLink, Info } from "lucide-react";
+import { LocateFixed, Loader2, ExternalLink } from "lucide-react";
 
 interface AddressSearchMapProps {
   onSelect: (

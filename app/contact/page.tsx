@@ -158,7 +158,7 @@ export default function ContactPage() {
 							>
 								<Button
 									variant="outline"
-									className="w-full border-none  text-stone-300 hover:bg-red-900/20 hover:text-white text-gray-900"
+									className="w-full border-none hover:bg-red-900/20 hover:text-white text-gray-900"
 								>
 									Hacer Pedido por WhatsApp
 								</Button>
@@ -202,7 +202,7 @@ export default function ContactPage() {
 							>
 								<Button
 									variant="outline"
-									className="border-none  text-stone-300 hover:bg-red-900/20 hover:text-white text-gray-900"
+									className="border-none hover:bg-red-900/20 hover:text-white text-gray-900"
 								>
 									Contactar Ahora
 								</Button>
